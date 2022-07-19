@@ -7,7 +7,6 @@ logs.get("/", (req, res) => {
 });
 
 logs.get("/:id", (req, res) => {
-  console.log(req.params);
   const logChoice = req.params;
   if (Number(logChoice.id) > logsData.length) {
     res.status(404).redirect("/error");
@@ -21,9 +20,15 @@ logs.post("/", (req, res) => {
 });
 
 logs.delete("/:id", (req, res) => {
-    const index = req.param;
-    const flushedLog = logsData.splice(index, 1);
-    res.json(flushedLog);
+  const index = req.param;
+  const flushedLog = logsData.splice(index, 1);
+  res.json(flushedLog);
+});
+
+logs.put("/id", (req, res) => {
+    const index = req.params;
+    logsData[index] = req.body;
+    res.json(logsData[index]);
 })
 
 module.exports = logs;
