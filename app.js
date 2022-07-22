@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
-app.use(express.json()); // Important to be able to parse html data in as body
 const logsController = require("./controllers/logsController");
+const cors = require("cors");
+
+app.use(cors());
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Welcome to Captain's Log!");

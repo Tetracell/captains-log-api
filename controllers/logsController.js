@@ -16,13 +16,15 @@ logs.get("/:id", (req, res) => {
 
 logs.post("/", (req, res) => {
   logsData.push(req.body);
+  console.log("Creating log");
   res.json(logsData[logsData.length - 1]);
 });
 
 logs.delete("/:id", (req, res) => {
-  const index = req.param;
-  const flushedLog = logsData.splice(index, 1);
-  res.json(flushedLog);
+  const { id } = req.params;
+  const flushedLog = logsData.splice(id, 1);
+  res.status(200).json(flushedLog);
+  console.log("I am deleting index " + id);
 });
 
 logs.put("/id", (req, res) => {
